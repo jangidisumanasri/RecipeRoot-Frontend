@@ -1,0 +1,141 @@
+.rr-feature-panel {
+  margin: 1rem 0;
+  padding: 1.25rem;
+  border: 1px solid #d8dfd2;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.rr-feature-form {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.rr-feature-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.rr-feature-form input,
+.rr-feature-form select,
+.rr-feature-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem;
+  border: 1px solid #cbd5c3;
+  border-radius: 10px;
+  background: white;
+  color: #263226;
+  font: inherit;
+}
+
+.rr-feature-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.rr-feature-panel button {
+  cursor: pointer;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid #8ca58a;
+  border-radius: 10px;
+  background: #e4efe3;
+  color: #29452c;
+  font: inherit;
+}
+
+.rr-link-button {
+  border: 0 !important;
+  background: transparent !important;
+  text-decoration: underline;
+}
+
+.rr-error {
+  color: #a12b2b;
+}
+
+.rr-week-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.rr-planner-form {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  align-items: end;
+}
+
+.rr-week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.rr-day-card {
+  border: 1px solid #d8dfd2;
+  border-radius: 14px;
+  padding: 0.8rem;
+  min-width: 0;
+}
+
+.rr-meal-slot {
+  padding: 0.55rem 0;
+  border-top: 1px solid #e5e9e1;
+}
+
+.rr-planned-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.rr-review-list article {
+  padding: 0.8rem 0;
+  border-top: 1px solid #e5e9e1;
+}
+
+.rr-admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.rr-admin-stats article {
+  display: grid;
+  gap: 0.5rem;
+  border: 1px solid #d8dfd2;
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.rr-admin-stats strong {
+  font-size: 1.6rem;
+}
+
+.rr-admin-table-wrap {
+  overflow-x: auto;
+}
+
+.rr-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rr-admin-table th,
+.rr-admin-table td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #e5e9e1;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .rr-feature-panel {
+    padding: 0.85rem;
+  }
+}
