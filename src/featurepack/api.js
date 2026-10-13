@@ -1,12 +1,16 @@
-const API_BASE =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://reciperoot-backend.onrender.com"
+).replace(/\/+$/, "");
 
 async function request(path, options = {}) {
+  const token = localStorage.getItem("reciperoot_token");
+
   const response = await fetch(`${API_BASE}${path}`, {
     ...options,
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
   });
@@ -26,7 +30,13 @@ async function request(path, options = {}) {
 
   if (response.status === 204) return null;
 
-  return response.json();
+  if (response.status === 205) return null;
+
+  const contentType = response.headers.get("content-type") || "";
+
+  return contentType.includes("application/json")
+    ? response.json()
+    : response.text();
 }
 
 export const featureApi = {
@@ -43,12 +53,16 @@ export const featureApi = {
     }),
 
   logout: () =>
-    request("/api/auth/logout", { method: "POST" }),
+    request("/api/auth/logout", {
+      method: "POST",
+    }),
 
   me: () => request("/api/auth/me"),
 
   getWeek: (startDate) =>
-    request(`/api/meal-plans/week?startDate=${startDate}`),
+    request(
+      `/api/meal-plans/week?startDate=${encodeURIComponent(startDate)}`
+    ),
 
   addMeal: (data) =>
     request("/api/meal-plans", {
@@ -57,10 +71,12 @@ export const featureApi = {
     }),
 
   removeMeal: (id) =>
-    request(`/api/meal-plans/${id}`, { method: "DELETE" }),
+    request(`/api/meal-plans/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
 
   getReviews: (recipeId) =>
-    request(`/api/reviews/recipe/${recipeId}`),
+    request(`/api/reviews/recipe/${encodeURIComponent(recipeId)}`),
 
   submitReview: (data) =>
     request("/api/reviews", {
@@ -75,11 +91,17 @@ export const featureApi = {
     request("/api/admin/users"),
 
   deleteAdminUser: (id) =>
-    request(`/api/admin/users/${id}`, { method: "DELETE" }),
+    request(`/api/admin/users/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
 
   deleteAdminReview: (id) =>
-    request(`/api/admin/reviews/${id}`, { method: "DELETE" }),
+    request(`/api/admin/reviews/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
 
   deleteAdminRecipe: (id) =>
-    request(`/api/admin/recipes/${id}`, { method: "DELETE" }),
+    request(`/api/admin/recipes/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }),
 };

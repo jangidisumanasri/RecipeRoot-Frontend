@@ -32,8 +32,13 @@ export default function AuthPanel({ onAuthenticated }) {
         email: form.email,
         password: form.password,
       });
-
-      onAuthenticated?.(user);
+      console.log("Login response:", user);
+      localStorage.setItem("reciperoot_token", user.token);
+      console.log(
+          "Token saved:",
+          Boolean(localStorage.getItem("reciperoot_token"))
+        );
+    onAuthenticated?.(user);
     } catch (err) {
       setError(err.message);
     } finally {

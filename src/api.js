@@ -1,8 +1,8 @@
-
 const API_BASE = (
-  import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://reciperoot-backend.onrender.com'
 ).replace(/\/+$/, '');
-
+console.log("RecipeRoot API_BASE:", API_BASE);
 async function request(path, options = {}) {
   const token = localStorage.getItem('reciperoot_token');
 
